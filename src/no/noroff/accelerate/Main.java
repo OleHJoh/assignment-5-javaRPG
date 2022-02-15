@@ -1,5 +1,6 @@
 package no.noroff.accelerate;
 
+import no.noroff.accelerate.models.Mage;
 import no.noroff.accelerate.models.Warrior;
 
 public class Main {
@@ -11,5 +12,9 @@ public class Main {
         System.out.println(Ole);
         Ole.levelUp();
         System.out.println(Ole);
+        Mage Caro = new Mage("Caro",1);
+        System.out.println(Caro);
+        Caro.levelUp();
+        System.out.println(Caro);
     }
 }

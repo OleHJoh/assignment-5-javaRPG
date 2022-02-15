@@ -4,9 +4,9 @@ public class Warrior extends Character{
 
     public Warrior(String name, int level) {
         super(name, level);
-        setStrength(5);
-        setDexterity(2);
-        setIntelligence(1);
+        this.strength = 5;
+        this.dexterity = 2;
+        this.intelligence = 1;
     }
 
     @Override
