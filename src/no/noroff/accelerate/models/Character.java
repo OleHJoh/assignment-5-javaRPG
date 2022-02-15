@@ -1,43 +1,26 @@
 package no.noroff.accelerate.models;
 
-public abstract class Character extends PrimaryAttribute {
+import no.noroff.accelerate.interfaces.LevelUp;
 
-    private String name;
-    private int level;
-    private int basePrimaryAttributes;
-    private int totalPrimaryAttributes;
+public abstract class Character extends PrimaryAttribute implements LevelUp {
 
-    public String getName(){
-        return name;
-    }
+    protected String name;
+    protected int level;
+    protected String role;
 
-    public int getLevel(){
-        return level;
-    }
-
-    public int getBasePrimaryAttributes() {
-        return basePrimaryAttributes;
-    }
-
-    public int getTotalPrimaryAttributes() {
-        return totalPrimaryAttributes;
-    }
-
-    public void setName(String name) {
+    public Character(String name, int level) {
         this.name = name;
-    }
-
-    public void setLevel(int level) {
         this.level = level;
     }
 
-    public void setBasePrimaryAttributes(int basePrimaryAttributes) {
-        this.basePrimaryAttributes = basePrimaryAttributes;
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", level=" + level +
+                ", strength=" + getStrength() +
+                ", dexterity=" + getDexterity() +
+                ", intelligence=" + getIntelligence() +
+                '}';
     }
-
-    public void setTotalPrimaryAttributes(int totalPrimaryAttributes) {
-        this.totalPrimaryAttributes = totalPrimaryAttributes;
-    }
-
-
 }
