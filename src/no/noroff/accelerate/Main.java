@@ -1,7 +1,6 @@
 package no.noroff.accelerate;
 
-import no.noroff.accelerate.models.Mage;
-import no.noroff.accelerate.models.Warrior;
+import no.noroff.accelerate.models.*;
 
 public class Main {
 
@@ -10,11 +9,9 @@ public class Main {
 
         Warrior Ole = new Warrior("Ole",1);
         System.out.println(Ole);
-        Ole.levelUp();
+        Weapon weapon = new Weapon();
+        System.out.println(weapon);
+        Ole.setWeapon(weapon);
         System.out.println(Ole);
-        Mage Caro = new Mage("Caro",1);
-        System.out.println(Caro);
-        Caro.levelUp();
-        System.out.println(Caro);
     }
 }

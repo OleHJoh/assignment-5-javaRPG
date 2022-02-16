@@ -1,42 +1,42 @@
 package no.noroff.accelerate.models;
 
-public class Warrior extends Character{
+public class Ranger extends Character{
 
-    public Warrior(String name, int level) {
+    public Ranger(String name, int level) {
         super(name, level);
-        role = "Warrior";
-        strength = 5;
-        dexterity = 2;
+        role = "Ranger";
+        strength = 1;
+        dexterity = 7;
         intelligence = 1;
     }
 
     public void setWeapon(Weapon weapon){
-        if ((weapon.WeaponType == Weapon.WeaponTypes.Axes) || (weapon.WeaponType == Weapon.WeaponTypes.Hammers) || (weapon.WeaponType == Weapon.WeaponTypes.Swords)){
+        if ((weapon.WeaponType == Weapon.WeaponTypes.Bows)){
             this.weapon = weapon;
         }
         else
-            System.out.println("This weapon cannot be equipped by a warrior");
+            System.out.println("This weapon cannot be equipped by a ranger");
     }
 
     private double getCharacterDPS(){
         if (weapon == null){
-            return 1 + strength/100;
+            return 1 + dexterity/100;
         }
         int weaponDPS = weapon.getDPS();
-        return weaponDPS * (1 + strength/100);
+        return weaponDPS * (1 + dexterity/100);
     }
 
     @Override
     public void levelUp() {
         level++;
-        strength += 3;
-        dexterity += 2;
+        strength += 1;
+        dexterity += 5;
         intelligence += 1;
     }
 
     @Override
     public String toString() {
-        return "Warrior{" +
+        return "Ranger{" +
                 "name='" + name + '\'' +
                 ", level=" + level +
                 ", strength=" + strength +

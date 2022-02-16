@@ -8,6 +8,12 @@ public class Armor extends Item {
         Plate
     }
 
+    public Armor(){
+
+    }
 
 
+    private int getRandomInteger(int max){
+        return ((int) (Math.random()*(max - 1))) + 1;
+    }
 }
