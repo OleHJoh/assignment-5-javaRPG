@@ -1,9 +1,12 @@
-package no.noroff.accelerate.models;
+package no.noroff.accelerate.models.characters;
 
-public class Ranger extends Character{
+import no.noroff.accelerate.models.items.Weapon;
 
-    public Ranger(String name, int level) {
-        super(name, level);
+public class Ranger extends Character {
+
+    public Ranger(String name) {
+        super(name);
+        level = 1;
         role = "Ranger";
         strength = 1;
         dexterity = 7;
@@ -12,7 +15,10 @@ public class Ranger extends Character{
 
     public void setWeapon(Weapon weapon){
         if ((weapon.WeaponType == Weapon.WeaponTypes.Bows)){
-            this.weapon = weapon;
+            if(level != weapon.getEquipLevel())
+                System.out.println("Character level is to low for this weapon");
+            else
+                this.weapon = weapon;
         }
         else
             System.out.println("This weapon cannot be equipped by a ranger");

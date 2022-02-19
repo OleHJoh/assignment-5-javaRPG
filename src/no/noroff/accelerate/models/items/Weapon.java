@@ -1,4 +1,4 @@
-package no.noroff.accelerate.models;
+package no.noroff.accelerate.models.items;
 
 public class Weapon extends Item{
 
@@ -72,7 +72,7 @@ public class Weapon extends Item{
         Spectral_Knapsack
     }
 
-    enum WeaponTypes{
+    public enum WeaponTypes{
         Axes,
         Bows,
         Daggers,
@@ -96,6 +96,25 @@ public class Weapon extends Item{
         setAttackSpeed();
         slot = "Weapon";
         setEquipLevel();
+    }
+
+    public Weapon(String weaponType){
+        WeaponType = WeaponTypes.valueOf(weaponType);
+        setDamage();
+        setAttackSpeed();
+        slot = "Weapon";
+        setEquipLevel();
+        setName();
+
+    }
+
+    public Weapon(int damage, int attackSpeed, int equipLevel,String weaponType){
+        WeaponType = WeaponTypes.valueOf(weaponType);
+        setName();
+        Damage = damage;
+        AttackSpeed = attackSpeed;
+        slot = "Weapon";
+        this.equipLevel = equipLevel;
     }
 
     private void setWeaponType() {

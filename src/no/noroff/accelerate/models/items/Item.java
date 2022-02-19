@@ -1,6 +1,8 @@
-package no.noroff.accelerate.models;
+package no.noroff.accelerate.models.items;
 
-public abstract class Item {
+import no.noroff.accelerate.models.PrimaryAttribute;
+
+public abstract class Item extends PrimaryAttribute {
 
     protected String name;
     protected int equipLevel;

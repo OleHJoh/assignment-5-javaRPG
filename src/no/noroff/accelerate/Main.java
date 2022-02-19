@@ -1,17 +1,19 @@
 package no.noroff.accelerate;
 
-import no.noroff.accelerate.models.*;
+import no.noroff.accelerate.models.characters.Mage;
+import no.noroff.accelerate.models.characters.Warrior;
+import no.noroff.accelerate.models.items.Weapon;
 
 public class Main {
 
     public static void main(String[] args) {
 	// write your code here
 
-        Warrior Ole = new Warrior("Ole",1);
-        System.out.println(Ole);
-        Weapon weapon = new Weapon();
+        Mage caro = new Mage("Caro");
+        System.out.println(caro);
+        Weapon weapon = new Weapon("Staffs");
         System.out.println(weapon);
-        Ole.setWeapon(weapon);
-        System.out.println(Ole);
+        caro.setWeapon(weapon);
+        System.out.println(caro);
     }
 }

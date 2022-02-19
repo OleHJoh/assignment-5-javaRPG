@@ -1,9 +1,12 @@
-package no.noroff.accelerate.models;
+package no.noroff.accelerate.models.characters;
 
-public class Mage extends Character{
+import no.noroff.accelerate.models.items.Weapon;
 
-    public Mage(String name, int level) {
-        super(name, level);
+public class Mage extends Character {
+
+    public Mage(String name) {
+        super(name);
+        level = 1;
         role = "Mage";
         strength = 1;
         dexterity = 1;
@@ -12,7 +15,10 @@ public class Mage extends Character{
 
     public void setWeapon(Weapon weapon){
         if ((weapon.WeaponType == Weapon.WeaponTypes.Staffs) || (weapon.WeaponType == Weapon.WeaponTypes.Wands)){
-            this.weapon = weapon;
+            if(level != weapon.getEquipLevel())
+                System.out.println("Character level is to low for this weapon");
+            else
+                this.weapon = weapon;
         }
         else
             System.out.println("This weapon cannot be equipped by a mage");
