@@ -14,6 +14,7 @@ public abstract class Character extends PrimaryAttribute implements LevelUp {
     protected Armor body;
     protected Armor legs;
     protected Weapon weapon;
+    protected int totalAttributes;
 
     public Character(String name) {
         this.name = name;

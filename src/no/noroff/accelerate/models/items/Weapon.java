@@ -82,13 +82,9 @@ public class Weapon extends Item{
         Wands
     }
 
-    public WeaponTypes WeaponType;
-    private int Damage;
-    private int AttackSpeed;
-
-    public int getDPS(){
-        return this.Damage * this.AttackSpeed;
-    }
+    public WeaponTypes weaponType;
+    private int damage;
+    private double attackSpeed;
 
     public Weapon() {
         setWeaponType();
@@ -99,7 +95,7 @@ public class Weapon extends Item{
     }
 
     public Weapon(String weaponType){
-        WeaponType = WeaponTypes.valueOf(weaponType);
+        this.weaponType = WeaponTypes.valueOf(weaponType);
         setDamage();
         setAttackSpeed();
         slot = "Weapon";
@@ -108,52 +104,56 @@ public class Weapon extends Item{
 
     }
 
-    public Weapon(int damage, int attackSpeed, int equipLevel,String weaponType){
-        WeaponType = WeaponTypes.valueOf(weaponType);
+    public Weapon(int damage, double attackSpeed, int equipLevel, String weaponType){
+        this.weaponType = WeaponTypes.valueOf(weaponType);
         setName();
-        Damage = damage;
-        AttackSpeed = attackSpeed;
+        this.damage = damage;
+        this.attackSpeed = attackSpeed;
         slot = "Weapon";
         this.equipLevel = equipLevel;
     }
 
+    public double getDPS(){
+        return this.damage * this.attackSpeed;
+    }
+
     private void setWeaponType() {
-        WeaponType = WeaponTypes.values()[getRandomInteger(7)];
+        weaponType = WeaponTypes.values()[getRandomInteger(7)];
         setName();
     }
 
     private void setDamage(){
-        Damage = getRandomInteger(10);
+        damage = getRandomInteger(10);
     }
 
     private void setAttackSpeed(){
-        AttackSpeed = getRandomInteger(4);
+        attackSpeed = getRandomInteger(4);
     }
 
     private void setEquipLevel(){
-        equipLevel = Math.round(getDPS()/4);
+        equipLevel = (int) Math.round(getDPS()/4);
     }
 
     private void setName(){
-        if (this.WeaponType == WeaponTypes.Axes){
+        if (this.weaponType == WeaponTypes.Axes){
             name = String.valueOf(AxeNames.values()[getRandomInteger(7)]);
         }
-        else if (this.WeaponType == WeaponTypes.Bows){
+        else if (this.weaponType == WeaponTypes.Bows){
             name = String.valueOf(BowNames.values()[getRandomInteger(7)]);
         }
-        else if (this.WeaponType == WeaponTypes.Daggers){
+        else if (this.weaponType == WeaponTypes.Daggers){
             name = String.valueOf(DaggerNames.values()[getRandomInteger(7)]);
         }
-        else if (this.WeaponType == WeaponTypes.Hammers){
+        else if (this.weaponType == WeaponTypes.Hammers){
             name = String.valueOf(HammerNames.values()[getRandomInteger(7)]);
         }
-        else if (this.WeaponType == WeaponTypes.Staffs){
+        else if (this.weaponType == WeaponTypes.Staffs){
             name = String.valueOf(StaffNames.values()[getRandomInteger(7)]);
         }
-        else if (this.WeaponType == WeaponTypes.Swords){
+        else if (this.weaponType == WeaponTypes.Swords){
             name = String.valueOf(SwordNames.values()[getRandomInteger(7)]);
         }
-        else if (this.WeaponType == WeaponTypes.Wands){
+        else if (this.weaponType == WeaponTypes.Wands){
             name = String.valueOf(WandNames.values()[getRandomInteger(7)]);
         }
     }
@@ -168,9 +168,9 @@ public class Weapon extends Item{
                 "name='" + name + '\'' +
                 ", equipLevel=" + equipLevel +
                 ", slot='" + slot + '\'' +
-                ", WeaponType=" + WeaponType +
-                ", Damage=" + Damage +
-                ", AttackSpeed=" + AttackSpeed +
+                ", WeaponType=" + weaponType +
+                ", Damage=" + damage +
+                ", AttackSpeed=" + attackSpeed +
                 '}';
     }
 }

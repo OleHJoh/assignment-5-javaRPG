@@ -75,10 +75,20 @@ public class Armor extends Item {
     }
 
     enum PlateBodyNames{
-
+        Prime_Titanium_Vest,
+        Obsidian_Batteplate,
+        Sentinel_Mithril_Breastplate,
+        Hopeless_Titanium_Tunic
     }
 
-    enum armorTypes{
+    enum PlateHelmetNames{
+        Ruby_Infused_Adamantite_Jaws,
+        Unholy_Adamantite_Visage,
+        Promised_Adamantite_Crown,
+        Infused_Demon_Faceguard
+    }
+
+    public enum ArmorTypes{
         Cloth,
         Leather,
         Mail,
@@ -86,11 +96,137 @@ public class Armor extends Item {
     }
 
     public Armor(){
-
+        setSlot();
+        setArmorType();
+        setName();
+        setPrimaryAttributes();
+        setEquipLevel();
     }
 
+    public Armor(String armorTYpe){
+        setSlot();
+        this.armorType = ArmorTypes.valueOf(armorTYpe);
+        setName();
+        setPrimaryAttributes();
+        setEquipLevel();
+    }
+
+    public Armor(int strength, int dexterity, int intelligence, int equipLevel, String armorType){
+        setSlot();
+        this.armorType = ArmorTypes.valueOf(armorType);
+        setName();
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.intelligence = intelligence;
+        this.equipLevel = equipLevel;
+    }
+
+    public ArmorTypes armorType;
+
+    private void setSlot(){
+        int number = getRandomInteger(100);
+        if(number <= 33){
+            slot = "Legs";
+        }
+        else if(number <= 66){
+            slot = "Body";
+        }
+        else
+            slot = "Head";
+    }
+
+    private void setArmorType(){
+        armorType = ArmorTypes.values()[getRandomInteger(4)];
+    }
+
+    private void setName(){
+        if (armorType == ArmorTypes.Cloth){
+            if (slot == "Legs"){
+                name = String.valueOf(ClothLegNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Body"){
+                name = String.valueOf(ClothBodyNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Head"){
+                name = String.valueOf(ClothHelmetNames.values()[getRandomInteger(4)]);
+            }
+        }
+        else if (armorType == ArmorTypes.Leather){
+            if (slot == "Legs"){
+                name = String.valueOf(LeatherLegNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Body"){
+                name = String.valueOf(LeatherBodyNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Head"){
+                name = String.valueOf(LeatherHelmetNames.values()[getRandomInteger(4)]);
+            }
+        }
+        else  if (armorType == ArmorTypes.Mail){
+            if (slot == "Legs"){
+                name = String.valueOf(MailLegNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Body"){
+                name = String.valueOf(MailBodyNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Head"){
+                name = String.valueOf(MailHelmetNames.values()[getRandomInteger(4)]);
+            }
+        }
+        else if (armorType == ArmorTypes.Plate){
+            if (slot == "Legs"){
+                name = String.valueOf(PlateLegNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Body"){
+                name = String.valueOf(PlateBodyNames.values()[getRandomInteger(4)]);
+            }
+            else if (slot == "Head"){
+                name = String.valueOf(PlateHelmetNames.values()[getRandomInteger(4)]);
+            }
+        }
+    }
+
+    private void setPrimaryAttributes(){
+        if (armorType == ArmorTypes.Cloth){
+            strength = getRandomInteger(3);
+            dexterity = getRandomInteger(3);
+            intelligence = getRandomInteger(8);
+        }
+        else if (armorType == ArmorTypes.Leather){
+            strength = getRandomInteger(3);
+            dexterity = getRandomInteger(8);
+            intelligence = getRandomInteger(3);
+        }
+        else if (armorType == ArmorTypes.Mail){
+            strength = getRandomInteger(6);
+            dexterity = getRandomInteger(6);
+            intelligence = getRandomInteger(3);
+        }
+        else if (armorType == ArmorTypes.Plate){
+            strength = getRandomInteger(8);
+            dexterity = getRandomInteger(3);
+            intelligence = getRandomInteger(3);
+        }
+    }
+
+    private void setEquipLevel(){
+        equipLevel = Math.round((strength + dexterity + intelligence)/3);
+    }
 
     private int getRandomInteger(int max){
         return ((int) (Math.random()*(max - 1))) + 1;
+    }
+
+    @Override
+    public String toString() {
+        return "Armor{" +
+                "name=" + name +
+                ", equipLevel=" + equipLevel +
+                ", slot=" + slot +
+                ", armorType=" + armorType +
+                ", strength='" + strength + '\'' +
+                ", dexterity=" + dexterity +
+                ", intelligence='" + intelligence + '\'' +
+                '}';
     }
 }
