@@ -1,7 +1,9 @@
 package no.noroff.accelerate.models.items;
 
+//Weapon class extends Item
 public class Weapon extends Item{
 
+    //Enumerations with weapon names
     enum AxeNames{
         Orenmir,
         Windreaper,
@@ -72,6 +74,7 @@ public class Weapon extends Item{
         Spectral_Knapsack
     }
 
+    //Enumeration with weapon types
     public enum WeaponTypes{
         Axes,
         Bows,
@@ -82,10 +85,13 @@ public class Weapon extends Item{
         Wands
     }
 
+    //Class defined variable
     public WeaponTypes weaponType;
     private int damage;
     private double attackSpeed;
 
+    //Weapon constructors
+    //Makes a random weapon
     public Weapon() {
         setWeaponType();
         setDamage();
@@ -94,6 +100,7 @@ public class Weapon extends Item{
         setEquipLevel();
     }
 
+    //Makes a random weapon with defined weapon type
     public Weapon(String weaponType){
         this.weaponType = WeaponTypes.valueOf(weaponType);
         setDamage();
@@ -104,6 +111,7 @@ public class Weapon extends Item{
 
     }
 
+    //Makes a weapon with everything defined
     public Weapon(int damage, double attackSpeed, int equipLevel, String weaponType){
         this.weaponType = WeaponTypes.valueOf(weaponType);
         setName();
@@ -113,28 +121,41 @@ public class Weapon extends Item{
         this.equipLevel = equipLevel;
     }
 
+    //Get dps function
     public double getDPS(){
+        //Returns damage multiplied by attack speed
         return this.damage * this.attackSpeed;
     }
 
+    //Set weapon type function
     private void setWeaponType() {
+        //Randomly picks one of the seven weapon types
         weaponType = WeaponTypes.values()[getRandomInteger(7)];
+        //Runs set name
         setName();
     }
 
+    //Set damage function
     private void setDamage(){
+        //Sets damage to a random number between 1 and 10
         damage = getRandomInteger(10);
     }
 
+    //Set attack speed function
     private void setAttackSpeed(){
-        attackSpeed = getRandomInteger(4);
+        //Sets attack speed to a random number between 1 and 4
+        attackSpeed = getRandomDouble(4);
     }
 
+    //Set equip level function
     private void setEquipLevel(){
+        //Gets the weapon dps and divide it by 4
         equipLevel = (int) Math.round(getDPS()/4);
     }
 
+    //Set name function
     private void setName(){
+        //Checks what weapon type the weapon is, and picks one of the seven corresponding names to that type
         if (this.weaponType == WeaponTypes.Axes){
             name = String.valueOf(AxeNames.values()[getRandomInteger(7)]);
         }
@@ -158,10 +179,22 @@ public class Weapon extends Item{
         }
     }
 
+    //Get random integer value
     private int getRandomInteger(int max){
+        //Returns a random integer between 1 and the value received
         return ((int) (Math.random()*(max - 1))) + 1;
     }
 
+    //Get random double value
+    private double getRandomDouble(int max){
+        //Gets a random value between 1 and the value received
+        double number = (Math.random() * (max -1 )) +1;
+        System.out.println("Double before converted: " + number);
+        //Returns the double with 1 decimal
+        return (Math.round(number*10.0)/10.0);
+    }
+
+    //To string function
     @Override
     public String toString() {
         return "Weapon{" +
